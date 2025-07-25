@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Rocket, Clock, Zap, Coffee, Code2, Sparkles } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import Footer from "@/components/Footer";
 
 const Portfolio = () => {
   return (
@@ -221,6 +222,8 @@ const Portfolio = () => {
           </motion.div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 };

@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import emailjs from '@emailjs/browser';
 import { getEmailJSConfig } from '@/config/emailjs';
+import Footer from "@/components/Footer";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -297,14 +298,14 @@ const Contact = () => {
             className="max-w-4xl mx-auto"
           >
             <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <Card>
                 <CardHeader>
                   <CardTitle className="text-lg">What type of roles am I looking for?</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
-                    I'm seeking full-time or consultingopportunities with early-stage startups where I can make a 
+                    I'm seeking full-time or consulting opportunities with early-stage startups where I can make a 
                     significant impact. I prefer roles that combine technical leadership with hands-on 
                     development in areas like climate tech, fintech, or AI/ML.
                   </p>
@@ -335,7 +336,7 @@ const Contact = () => {
                 </CardContent>
               </Card>
               
-              <Card>
+              {/* <Card>
                 <CardHeader>
                   <CardTitle className="text-lg">Can I see examples of my work?</CardTitle>
                 </CardHeader>
@@ -345,11 +346,13 @@ const Contact = () => {
                     For confidential projects, I can provide more details during our conversation.
                   </p>
                 </CardContent>
-              </Card>
+              </Card> */}
             </div>
           </motion.div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 };

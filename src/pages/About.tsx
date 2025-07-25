@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import Footer from "@/components/Footer";
 
 const About = () => {
   const [expandedJob, setExpandedJob] = useState<string | null>(null);
@@ -457,30 +458,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-gradient-primary">
-        <div className="container mx-auto px-4 py-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-3xl mx-auto text-center text-white"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Let's Build the Future Together
-            </h2>
-            <p className="text-xl mb-8 text-white/90">
-              Ready to discuss how my experience can help your startup succeed?
-            </p>
-            <Button asChild size="lg" variant="secondary">
-              <a href="mailto:andy.sprague44@gmail.com">
-                <Mail className="mr-2 h-4 w-4" />
-                Get In Touch
-              </a>
-            </Button>
-          </motion.div>
-        </div>
-      </section>
+      <Footer />
     </div>
   );
 };
