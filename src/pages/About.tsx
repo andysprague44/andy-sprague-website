@@ -15,7 +15,7 @@ const About = () => {
     {
       id: "apartmentlist",
       title: "Staff Software Engineer",
-      company: "apartmentlist.com",
+      company: "Apartment List",
       period: "Sep 2024-Present",
       location: "USA Remote",
       color: "bg-primary",
@@ -33,7 +33,7 @@ const About = () => {
     {
       id: "brightwheel",
       title: "Senior Data Engineer",
-      company: "mybrightwheel.com",
+      company: "Brightwheel",
       period: "Jan 2024-Sep 2024",
       location: "USA Remote",
       color: "bg-primary",
