@@ -31,6 +31,23 @@ const About = () => {
       ]
     },
     {
+      id: "brightwheel",
+      title: "Senior Data Engineer",
+      company: "mybrightwheel.com",
+      period: "Jan 2024-Sep 2024",
+      location: "USA Remote",
+      color: "bg-primary",
+      achievements: [
+        { text: "Data model which ran customer queries 3x faster, and removed the need to run a nightly batch job", impact: "3.5h -> 0h", metric: "3x faster" },
+        { text: "Tripled closed wons in hubspot by reducing time taken to create the lead from 90s to 1s", impact: "3x conversion", metric: "Speed to lead" },
+      ],
+      responsibilities: [
+        "Led cross-functional teams across software & data engineering, DevOps, and marketing ops",
+        "Developed and maintained data and event-stremaing pipelines for internal data analytics, customer facing apps, and CRM integrations",
+        "Stood up self-managed cloud deployments for event streaming architectures using AWS CDK"
+      ]
+    },
+    {
       id: "ecocart",
       title: "Senior Software Engineer",
       company: "EcoCart",
