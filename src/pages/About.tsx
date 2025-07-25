@@ -163,7 +163,7 @@ const About = () => {
   return (
     <div className="min-h-screen pt-16">
       {/* Header */}
-      <section className="container mx-auto px-4 py-12">
+      <section className="container mx-auto px-4 pt-12 pb-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -275,8 +275,85 @@ const About = () => {
         </motion.div>
       </section>
 
+      {/* Qualifications Section */}
+      <section className="container mx-auto px-4 py-6">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold mb-8">Qualifications</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+            {[
+              {
+                title: "Climate Change",
+                subtitle: "Climate For Action fellowship by terra.do",
+                detail: "Fossas cohort",
+                icon: "🌱",
+                delay: 0.1
+              },
+              {
+                title: "CFA Level 1",
+                subtitle: "Chartered Financial Analyst",
+                detail: "Investment Analysis & Portfolio Management",
+                icon: "📊",
+                delay: 0.2
+              },
+              {
+                title: "ITIL V3 Foundation",
+                subtitle: "IT Service Management",
+                detail: "Best Practices & Frameworks",
+                icon: "⚙️",
+                delay: 0.3
+              }
+            ].map((qualification, index) => (
+              <motion.div
+                key={qualification.title}
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: qualification.delay,
+                  type: "spring",
+                  stiffness: 200
+                }}
+                whileHover={{ 
+                  scale: 1.03, 
+                  y: -5,
+                  transition: { duration: 0.2 }
+                }}
+              >
+                <Card className="h-full bg-gradient-to-br from-white to-gray-50/50 border-2 border-primary/10 hover:border-primary/30 transition-all duration-300 rounded-xl overflow-hidden group">
+                  <CardContent className="p-6 text-center">
+                    <motion.div 
+                      className="text-4xl mb-4"
+                      animate={{ 
+                        rotate: [0, 5, -5, 0],
+                        scale: [1, 1.1, 1]
+                      }}
+                      transition={{ 
+                        duration: 3, 
+                        repeat: Infinity, 
+                        repeatDelay: 5 
+                      }}
+                    >
+                      {qualification.icon}
+                    </motion.div>
+                    <h3 className="text-lg font-bold mb-2 text-gray-800 group-hover:text-primary transition-colors">
+                      {qualification.title}
+                    </h3>
+                    <p className="text-sm font-medium text-gray-600 mb-1">
+                      {qualification.subtitle}
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      {qualification.detail}
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Skills Section */}
-      <section className="container mx-auto px-4 py-12">
+      <section className="container mx-auto px-4 py-6">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold mb-8">Technical Skills</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -318,7 +395,7 @@ const About = () => {
       </section>
 
         {/* Soft Skills Section */}
-  <section className="container mx-auto px-4 py-12">
+  <section className="container mx-auto px-4 py-6">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold mb-8">Soft Skills</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -352,7 +429,7 @@ const About = () => {
       </section>
 
       {/* Experience Timeline */}
-      <section className="container mx-auto px-4 py-12">
+      <section className="container mx-auto px-4 py-6">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold mb-8">Professional Experience</h2>
           
@@ -458,7 +535,7 @@ const About = () => {
       </section>
 
       {/* Education */}
-      <section className="container mx-auto px-4 py-12">
+      <section className="container mx-auto px-4 py-6">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold mb-8">Education</h2>
           <Card>
