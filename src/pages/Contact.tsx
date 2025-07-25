@@ -7,6 +7,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import emailjs from '@emailjs/browser';
+import { getEmailJSConfig } from '@/config/emailjs';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -21,12 +23,40 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    toast.success("Message sent successfully! I'll get back to you soon.");
-    setFormData({ name: "", email: "", subject: "", message: "" });
-    setIsSubmitting(false);
+    try {
+      // Get EmailJS configuration
+      const config = getEmailJSConfig();
+      
+      // Template parameters that will be sent to your email
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_email: 'andy.sprague44@gmail.com',
+        reply_to: formData.email,
+      };
+
+      const result = await emailjs.send(
+        config.serviceId,
+        config.templateId,
+        templateParams,
+        config.publicKey
+      );
+
+      if (result.status === 200) {
+        toast.success("Message sent successfully! I'll get back to you soon.");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        throw new Error('Failed to send email');
+      }
+      
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      toast.error("Failed to send message. Please try emailing me directly at andy.sprague44@gmail.com");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -86,22 +116,9 @@ const Contact = () => {
                 </div>
                 
                 <div className="flex items-center gap-3">
-                  <Phone className="h-5 w-5 text-primary" />
-                  <div>
-                    <p className="font-medium">Phone</p>
-                    <a 
-                      href="tel:7077530151"
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      707-753-0151
-                    </a>
-                  </div>
-                </div>
-                
-                <div className="flex items-center gap-3">
                   <MapPin className="h-5 w-5 text-primary" />
                   <div>
-                    <p className="font-medium">Location</p>
+                    <p className="font-medium">Carrier Pigeon</p>
                     <p className="text-muted-foreground">Petaluma, CA, 94952</p>
                   </div>
                 </div>
@@ -145,7 +162,7 @@ const Contact = () => {
                   <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
                 </a>
                 
-                <a
+                {/* <a
                   href="https://andysprague.com"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -157,12 +174,12 @@ const Contact = () => {
                     <p className="text-sm text-muted-foreground">andysprague.com</p>
                   </div>
                   <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
-                </a>
+                </a> */}
               </CardContent>
             </Card>
 
             {/* Availability */}
-            <Card>
+            {/* <Card>
               <CardHeader>
                 <CardTitle>Current Availability</CardTitle>
               </CardHeader>
@@ -176,7 +193,7 @@ const Contact = () => {
                   Open to both remote and hybrid roles.
                 </p>
               </CardContent>
-            </Card>
+            </Card> */}
           </motion.div>
 
           {/* Contact Form */}
@@ -287,7 +304,7 @@ const Contact = () => {
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
-                    I'm seeking full-time opportunities with early-stage startups where I can make a 
+                    I'm seeking full-time or consultingopportunities with early-stage startups where I can make a 
                     significant impact. I prefer roles that combine technical leadership with hands-on 
                     development in areas like climate tech, fintech, or AI/ML.
                   </p>
@@ -313,8 +330,7 @@ const Contact = () => {
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
-                    I typically respond to emails within 24 hours on weekdays. For urgent matters, 
-                    feel free to call me directly. I'm based in PST/PDT timezone.
+                    I typically respond to emails within 24 hours on weekdays. I'm based in PST/PDT timezone.
                   </p>
                 </CardContent>
               </Card>
@@ -325,7 +341,7 @@ const Contact = () => {
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
-                    Absolutely! Check out my portfolio section for detailed case studies and examples. 
+                    Absolutely! Check out my portfolio section for some of my public-facing work. 
                     For confidential projects, I can provide more details during our conversation.
                   </p>
                 </CardContent>

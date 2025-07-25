@@ -8,6 +8,7 @@ import { Progress } from "@/components/ui/progress";
 
 const About = () => {
   const [expandedJob, setExpandedJob] = useState<string | null>(null);
+  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
 
   const jobs = [
     {
@@ -107,19 +108,39 @@ const About = () => {
       { name: "Python", level: 95 },
       { name: "Go", level: 85 },
       { name: "Ruby", level: 80 },
-      { name: "C#", level: 75 },
+      { name: "C#", level: 95 },
       { name: "Scala", level: 70 },
-      { name: "Java", level: 70 }
+      { name: "Java", level: 50 }
     ],
-    "Cloud & Data": [
-      { name: "AWS", level: 90 },
+    "Frameworks": [
+      { name: "Flask (Python)", level: 85 },
+      { name: "ServiceStack (C#)", level: 95 },
+      { name: "Echo (Go)", level: 95 },
+      { name: "Ruby on Rails", level: 95 },
+      { name: "React", level: 70 },
+      { name: "Express", level: 70 },
+    ],
+    "Deployment": [
+      { name: "AWS", level: 80 },
+      { name: "Azure", level: 90 },
+      { name: "GCP", level: 95 },
       { name: "Databricks", level: 85 },
       { name: "Docker", level: 85 },
-      { name: "Terraform", level: 80 },
-      { name: "BigQuery", level: 75 },
-      { name: "Azure", level: 75 }
-    ]
+      { name: "Terraform", level: 70 },
+    ], 
   };
+
+  const softSkills = {
+    "Soft Skills": [
+      { name: "Pragmatism", level: 95 },
+      { name: "Problem-solving", level: 95 },
+      { name: "Analytical thinking", level: 95 },
+      { name: "Effective communication", level: 90 },
+      { name: "Technical leadership", level: 85 },
+      { name: "Influence", level: 75 },
+
+    ]
+  }
 
   return (
     <div className="min-h-screen pt-16">
@@ -137,28 +158,102 @@ const About = () => {
               <MapPin className="h-4 w-4" />
               <span>Petaluma, CA, 94952</span>
             </div>
-            <div className="flex items-center gap-2">
-              <Mail className="h-4 w-4" />
-              <span>andy.sprague44@gmail.com</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Phone className="h-4 w-4" />
-              <span>707-753-0151</span>
-            </div>
           </div>
           
-          <Card className="mb-12">
-            <CardContent className="p-8">
-              <p className="text-lg leading-relaxed">
-                An experienced technology professional with a passion for meaningful work that drives positive change, 
-                bringing 15 years of expertise in climate and financial services technology. Able to move fast in 
-                dynamic startup environments by taking a pragmatic approach to project delivery, using critical 
-                thinking to break down complex problems and find creative solutions without over-engineering. 
-                Has strong communication skills to enable effective collaboration with senior management, 
-                stakeholders, and team members alike.
-              </p>
-            </CardContent>
-          </Card>
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          >
+            <Card id="about-me" className="mb-12 relative overflow-hidden bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 border-2 border-dashed border-primary/20">
+              {/* Fun background elements */}
+              <div className="absolute top-1/2 right-8 text-3xl opacity-10 animate-spin" style={{ animationDuration: '10s' }}>⚡</div>
+              
+              <CardContent className="p-8 relative z-10">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.2, duration: 0.8 }}
+                >
+                  <div className="flex items-center gap-3 mb-6">
+                    <motion.span 
+                      className="text-3xl"
+                      animate={{ rotate: [0, 10, -10, 0] }}
+                      transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+                    >
+                      👋
+                    </motion.span>
+                    <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+                      Hey there! Nice to meet you
+                    </h3>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <motion.p 
+                      className="text-lg leading-relaxed"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ delay: 0.4, duration: 0.6 }}
+                    >
+                      <span className="inline-flex items-center gap-2">
+                        <span className="text-xl">🎯</span>
+                        <strong>Passionate problem solver</strong>
+                      </span>{" "}
+                      with 15 years of expertise in climate and financial services technology. 
+                      I love meaningful work that drives positive change!
+                    </motion.p>
+                    
+                    <motion.p 
+                      className="text-lg leading-relaxed"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ delay: 0.6, duration: 0.6 }}
+                    >
+                      <span className="inline-flex items-center gap-2">
+                        <span className="text-xl">⚡</span>
+                        <strong>Speed & pragmatism</strong>
+                      </span>{" "}
+                      are my superpowers in dynamic startup environments. I break down complex problems 
+                      and find creative solutions without over-engineering.
+                    </motion.p>
+                    
+                    <motion.p 
+                      className="text-lg leading-relaxed"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ delay: 0.8, duration: 0.6 }}
+                    >
+                      <span className="inline-flex items-center gap-2">
+                        <span className="text-xl">🤝</span>
+                        <strong>Collaboration enthusiast</strong>
+                      </span>{" "}
+                      with strong communication skills to work effectively with everyone from 
+                      senior management to fellow developers.
+                    </motion.p>
+                  </div>
+                  
+                  <motion.div 
+                    className="mt-6 flex flex-wrap gap-3"
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 1, duration: 0.6 }}
+                  >
+                    {["Climate Tech 🌱", "Startup Velocity 🏃‍♂️", "Problem Solver 🧩", "Pragmatism 💡"].map((tag, index) => (
+                      <motion.span
+                        key={tag}
+                        className="px-3 py-1 bg-white/70 rounded-full text-sm font-medium border border-primary/20"
+                        whileHover={{ scale: 1.1, rotate: 2 }}
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ delay: 1.2 + index * 0.1, type: "spring", stiffness: 300 }}
+                      >
+                        {tag}
+                      </motion.span>
+                    ))}
+                  </motion.div>
+                </motion.div>
+              </CardContent>
+            </Card>
+          </motion.div>
         </motion.div>
       </section>
 
@@ -166,7 +261,7 @@ const About = () => {
       <section className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold mb-8">Technical Skills</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {Object.entries(skills).map(([category, skillList]) => (
               <motion.div
                 key={category}
@@ -180,14 +275,56 @@ const About = () => {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     {skillList.map((skill) => (
-                      <div key={skill.name}>
+                      <div 
+                        key={skill.name}
+                        onMouseEnter={() => setHoveredSkill(skill.name)}
+                        onMouseLeave={() => setHoveredSkill(null)}
+                        className="cursor-pointer transition-all duration-200 hover:bg-muted/50 rounded-md p-2 -m-2"
+                      >
                         <div className="flex justify-between mb-2">
                           <span className="font-medium">{skill.name}</span>
                           <span className="text-sm text-muted-foreground">{skill.level}%</span>
                         </div>
-                        <Progress value={skill.level} className="h-2" />
+                        <Progress 
+                          value={hoveredSkill === skill.name ? skill.level : 0} 
+                          className="h-2 transition-all duration-[3000ms]" 
+                        />
                       </div>
                     ))}
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+        {/* Soft Skills Section */}
+  <section className="container mx-auto px-4 py-12">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold mb-8">Soft Skills</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {softSkills["Soft Skills"].map((skill, index) => (
+              <motion.div
+                key={skill.name}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <Card 
+                  className="h-full cursor-pointer transition-all duration-200 hover:shadow-md"
+                  onMouseEnter={() => setHoveredSkill(skill.name)}
+                  onMouseLeave={() => setHoveredSkill(null)}
+                >
+                  <CardContent className="p-6">
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="font-medium">{skill.name}</span>
+                      <span className="text-sm text-muted-foreground">{skill.level}%</span>
+                    </div>
+                    <Progress 
+                      value={hoveredSkill === skill.name ? skill.level : 0} 
+                      className="h-2 transition-all duration-[3000ms]" 
+                    />
                   </CardContent>
                 </Card>
               </motion.div>

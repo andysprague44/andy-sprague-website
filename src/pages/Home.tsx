@@ -29,7 +29,14 @@ const Home = () => {
             className="text-5xl md:text-7xl font-bold mb-6"
           >
             Hi, I'm{" "}
-            <span className="bg-gradient-primary bg-clip-text text-transparent">
+            <span 
+              id="name" 
+              className="bg-gradient-to-r from-[hsl(212,84%,20%)] to-[hsl(177,84%,32%)] bg-clip-text text-transparent"
+              style={{ 
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent'
+              }}
+            >
               Andy Sprague
             </span>
           </motion.h1>
@@ -40,8 +47,8 @@ const Home = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed"
           >
-            A passionate full stack software engineer with 15 years of experience driving positive change 
-            through climate and financial services technology.
+            An experienced technology professional with a passion for meaningful work that drives positive change, 
+            bringing 15 years of expertise in climate and financial services technology.
           </motion.p>
 
           <motion.div
@@ -51,8 +58,8 @@ const Home = () => {
             className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
           >
             <Button asChild size="lg" className="group">
-              <Link to="/portfolio">
-                View My Work
+              <Link to="/about">
+                About Me
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
