@@ -3,7 +3,9 @@
     "allow": [
       "Skill(frontend-design)",
       "Skill(frontend-design:*)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(npm uninstall *)",
+      "Bash(npm install *)"
     ]
   }
 }
