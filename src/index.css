@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here.
 All colors MUST be HSL.
 */
 
@@ -40,7 +40,7 @@ All colors MUST be HSL.
     --ring: 212 84% 20%;
 
     --radius: 0.75rem;
-    
+
     --gradient-primary: linear-gradient(135deg, hsl(212 84% 20%), hsl(177 84% 32%));
     --gradient-warm: linear-gradient(135deg, hsl(32 95% 44%), hsl(24 95% 53%));
     --shadow-elegant: 0 10px 30px -10px hsl(212 84% 20% / 0.2);
@@ -94,7 +94,7 @@ All colors MUST be HSL.
     --border: 212 35% 15%;
     --input: 212 35% 15%;
     --ring: 177 84% 32%;
-    
+
     --gradient-primary: linear-gradient(135deg, hsl(177 84% 32%), hsl(212 84% 20%));
     --gradient-warm: linear-gradient(135deg, hsl(32 95% 44%), hsl(24 95% 53%));
     --shadow-elegant: 0 10px 30px -10px hsl(177 84% 32% / 0.3);
@@ -119,25 +119,44 @@ All colors MUST be HSL.
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
-  
+
   html {
     scroll-behavior: smooth;
   }
 }
 
+@keyframes orb-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(40px, -50px) scale(1.08); }
+  66%       { transform: translate(-25px, 30px) scale(0.94); }
+}
+@keyframes orb-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(-35px, 40px) scale(0.96); }
+  66%       { transform: translate(50px, -30px) scale(1.06); }
+}
+@keyframes orb-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%       { transform: translate(20px, 25px) scale(1.04); }
+}
+
+.animate-orb-1 { animation: orb-1 12s ease-in-out infinite; }
+.animate-orb-2 { animation: orb-2 16s ease-in-out infinite; }
+.animate-orb-3 { animation: orb-3 10s ease-in-out infinite; }
+
 @layer utilities {
   .bg-gradient-primary {
     background: var(--gradient-primary);
   }
-  
+
   .bg-gradient-warm {
     background: var(--gradient-warm);
   }
-  
+
   .shadow-elegant {
     box-shadow: var(--shadow-elegant);
   }
-  
+
   .shadow-glow {
     box-shadow: var(--shadow-glow);
   }

@@ -1,15 +1,12 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MapPin, Mail, Phone, ChevronDown, ExternalLink, Calendar, TrendingUp } from "lucide-react";
+import { MapPin, ChevronDown, Calendar, TrendingUp, Wrench, Layers, Lightbulb, ExternalLink } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
 import Footer from "@/components/Footer";
 
 const About = () => {
   const [expandedJob, setExpandedJob] = useState<string | null>(null);
-  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
 
   const jobs = [
     {
@@ -23,6 +20,7 @@ const About = () => {
         { text: "Reduced latency of flagship AI/ML matching algorithm by 50%", impact: "3s → 1.5s", metric: "50% faster" },
         { text: "Added 6 urgency signals driving increased revenue per user", impact: "+1.4%", metric: "Revenue boost" },
         { text: "Introduced technical design docs and agile workflows", impact: "Team efficiency", metric: "Process improvement" },
+        { text: "Ran an internal dev academy for non-technical staff, enabling cross-functional contributors to write and ship code to production", impact: "Org-wide", metric: "Engineering culture" },
       ],
       responsibilities: [
         "Collaborated with data science and MLOps teams to improve self-serve ML pipelines",
@@ -43,7 +41,7 @@ const About = () => {
       ],
       responsibilities: [
         "Led cross-functional teams across software & data engineering, DevOps, and marketing ops",
-        "Developed and maintained data and event-stremaing pipelines for internal data analytics, customer facing apps, and CRM integrations",
+        "Developed and maintained data and event-streaming pipelines for internal data analytics, customer facing apps, and CRM integrations",
         "Stood up self-managed cloud deployments for event streaming architectures using AWS CDK"
       ]
     },
@@ -73,9 +71,9 @@ const About = () => {
       location: "San Francisco CA",
       color: "bg-accent",
       achievements: [
-        { text: "Improved project completion and user adoption rates", impact: "5x improvement", metric: "Delivery excellence" },
-        { text: "Portfolio risk aggregation engine", impact: "1 week → 30min", metric: "Time savings" },
-        { text: "Renewable energy pricing system", impact: "3 days → 15min", metric: "Process automation" },
+        { text: "Improved project completion and user adoption rates of data science projects by applying agile methodologies", impact: "5x improvement", metric: "Delivery excellence" },
+        { text: "Greenfield build of a portfolio risk aggregation engine to replace manual spreadsheets", impact: "1 week → 30min", metric: "Time savings" },
+        { text: "Built a Renewable Energy Pricing System to automate deal lifecycle management", impact: "3 days → 15min", metric: "Process automation" },
       ],
       responsibilities: [
         "Owned strategic technology and research planning",
@@ -122,43 +120,22 @@ const About = () => {
   ];
 
   const skills = {
-    "Languages": [
-      { name: "Python", level: 95 },
-      { name: "Go", level: 85 },
-      { name: "Ruby", level: 80 },
-      { name: "C#", level: 95 },
-      { name: "Scala", level: 70 },
-      { name: "Java", level: 50 }
-    ],
-    "Frameworks": [
-      { name: "Flask (Python)", level: 85 },
-      { name: "ServiceStack (C#)", level: 95 },
-      { name: "Echo (Go)", level: 95 },
-      { name: "Ruby on Rails", level: 95 },
-      { name: "React", level: 70 },
-      { name: "Express", level: 70 },
-    ],
-    "Deployment": [
-      { name: "AWS", level: 80 },
-      { name: "Azure", level: 90 },
-      { name: "GCP", level: 95 },
-      { name: "Databricks", level: 85 },
-      { name: "Docker", level: 85 },
-      { name: "Terraform", level: 70 },
-    ], 
+    "Languages": ["Python", "Go", "TypeScript", "C#", "Ruby", "Scala", "Java"],
+    "Data": ["Spark", "dbt", "Google Cloud Pub/Sub", "AWS Lambda", "Databricks", "BigQuery", "Redshift", "Postgres"],
+    "Deployment": ["AWS", "Azure", "GCP", "Docker", "Terraform", "Kubernetes", "AWS CDK", "Vercel"],
+    "AI": ["Claude Code", "Cursor", "Exa", "Firecrawl", "n8n"],
   };
 
-  const softSkills = {
-    "Soft Skills": [
-      { name: "Pragmatism", level: 95 },
-      { name: "Problem-solving", level: 95 },
-      { name: "Analytical thinking", level: 95 },
-      { name: "Effective communication", level: 90 },
-      { name: "Technical leadership", level: 85 },
-      { name: "Influence", level: 75 },
-
-    ]
-  }
+  const softSkills = [
+    "Influence without authority",
+    "Technical strategy",
+    "Engineering mentorship",
+    "Cross-team alignment",
+    "Design doc culture",
+    "Pragmatism",
+    "Analytical thinking",
+    "Stakeholder communication",
+  ];
 
   return (
     <div className="min-h-screen pt-16">
@@ -174,103 +151,57 @@ const About = () => {
           <div className="flex flex-wrap gap-6 text-muted-foreground mb-8">
             <div className="flex items-center gap-2">
               <MapPin className="h-4 w-4" />
-              <span>Petaluma, CA, 94952</span>
+              <span>Petaluma, CA, 94954</span>
             </div>
           </div>
-          
+
+          {/* Bio card */}
           <motion.div
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            id="about-me"
+            className="mb-12 grid grid-cols-1 md:grid-cols-[200px_1fr] border border-border rounded-xl overflow-hidden hover:shadow-elegant transition-shadow duration-300"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <Card id="about-me" className="mb-12 relative overflow-hidden bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 border-2 border-dashed border-primary/20">
-              {/* Fun background elements */}
-              <div className="absolute top-1/2 right-8 text-3xl opacity-10 animate-spin" style={{ animationDuration: '10s' }}>⚡</div>
-              
-              <CardContent className="p-8 relative z-10">
+            {/* Left: facts panel */}
+            <div className="bg-muted/40 border-b md:border-b-0 md:border-r border-border p-6 flex flex-col gap-4">
+              <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-muted-foreground">Profile</p>
+              {[
+                { label: "Currently", value: "Staff SWE, Apartment List" },
+                { label: "Based In", value: "Petaluma, CA" },
+                { label: "Industries", value: "Climate Tech · Ed Tech · Multi Family" },
+                { label: "Fun fact", value: "Can solve a Rubik's cube in under 2 mins" },
+              ].map(({ label, value }, i) => (
                 <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.2, duration: 0.8 }}
+                  key={label}
+                  initial={{ opacity: 0, x: -8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: 0.2 + i * 0.07 }}
                 >
-                  <div className="flex items-center gap-3 mb-6">
-                    <motion.span 
-                      className="text-3xl"
-                      animate={{ rotate: [0, 10, -10, 0] }}
-                      transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-                    >
-                      👋
-                    </motion.span>
-                    <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-                      Hey there! Nice to meet you
-                    </h3>
-                  </div>
-                  
-                  <div className="space-y-4">
-                    <motion.p 
-                      className="text-lg leading-relaxed"
-                      initial={{ x: -20, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      transition={{ delay: 0.4, duration: 0.6 }}
-                    >
-                      <span className="inline-flex items-center gap-2">
-                        <span className="text-xl">🎯</span>
-                        <strong>Passionate problem solver</strong>
-                      </span>{" "}
-                      with 15 years of expertise in climate and financial services technology. 
-                      I love meaningful work that drives positive change!
-                    </motion.p>
-                    
-                    <motion.p 
-                      className="text-lg leading-relaxed"
-                      initial={{ x: -20, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      transition={{ delay: 0.6, duration: 0.6 }}
-                    >
-                      <span className="inline-flex items-center gap-2">
-                        <span className="text-xl">⚡</span>
-                        <strong>Speed & pragmatism</strong>
-                      </span>{" "}
-                      are my superpowers in dynamic startup environments. I break down complex problems 
-                      and find creative solutions without over-engineering.
-                    </motion.p>
-                    
-                    <motion.p 
-                      className="text-lg leading-relaxed"
-                      initial={{ x: -20, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      transition={{ delay: 0.8, duration: 0.6 }}
-                    >
-                      <span className="inline-flex items-center gap-2">
-                        <span className="text-xl">🤝</span>
-                        <strong>Collaboration enthusiast</strong>
-                      </span>{" "}
-                      with strong communication skills to work effectively with everyone from 
-                      senior management to fellow developers.
-                    </motion.p>
-                  </div>
-                  
-                  <motion.div 
-                    className="mt-6 flex flex-wrap gap-3"
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 1, duration: 0.6 }}
-                  >
-                    {["Climate Tech 🌱", "Startup Velocity 🏃‍♂️", "Problem Solver 🧩", "Pragmatism 💡"].map((tag, index) => (
-                      <motion.span
-                        key={tag}
-                        className="px-3 py-1 bg-white/70 rounded-full text-sm font-medium border border-primary/20"
-                        whileHover={{ scale: 1.1, rotate: 2 }}
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ delay: 1.2 + index * 0.1, type: "spring", stiffness: 300 }}
-                      >
-                        {tag}
-                      </motion.span>
-                    ))}
-                  </motion.div>
+                  <p className="text-[10px] font-mono uppercase tracking-[0.15em] text-muted-foreground mb-0.5">{label}</p>
+                  <p className="text-sm font-medium leading-snug">{value}</p>
                 </motion.div>
-              </CardContent>
-            </Card>
+              ))}
+            </div>
+
+            {/* Right: prose */}
+            <div className="p-6 md:p-8 flex flex-col justify-center gap-4">
+              {[
+                "Fifteen years building software for organizations that care about something beyond profit: climate risk, early education, and multi-family housing.",
+                "Speed and pragmatism over ceremony: pragmatic solutions, shipped fast, without over-engineering.",
+                "I measure success by raising the ceiling of the team around me, not just my own ticket count.",
+              ].map((text, i) => (
+                <motion.p
+                  key={i}
+                  className="text-base leading-relaxed text-foreground/80"
+                  initial={{ opacity: 0, x: 8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: 0.25 + i * 0.1 }}
+                >
+                  {text}
+                </motion.p>
+              ))}
+            </div>
           </motion.div>
         </motion.div>
       </section>
@@ -282,9 +213,9 @@ const About = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
             {[
               {
-                title: "Climate Change",
-                subtitle: "Climate For Action fellowship by terra.do",
-                detail: "Fossas cohort",
+                title: "Climate Change: Learning for Action",
+                subtitle: "Fellowship by terra.do, Fossas cohort",
+                detail: "Climate Change",
                 icon: "🌱",
                 delay: 0.1
               },
@@ -302,39 +233,26 @@ const About = () => {
                 icon: "⚙️",
                 delay: 0.3
               }
-            ].map((qualification, index) => (
+            ].map((qualification) => (
               <motion.div
                 key={qualification.title}
                 initial={{ opacity: 0, y: 20, scale: 0.95 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ 
-                  duration: 0.6, 
+                transition={{
+                  duration: 0.6,
                   delay: qualification.delay,
                   type: "spring",
                   stiffness: 200
                 }}
-                whileHover={{ 
-                  scale: 1.03, 
+                whileHover={{
+                  scale: 1.03,
                   y: -5,
                   transition: { duration: 0.2 }
                 }}
               >
                 <Card className="h-full bg-gradient-to-br from-white to-gray-50/50 border-2 border-primary/10 hover:border-primary/30 transition-all duration-300 rounded-xl overflow-hidden group">
                   <CardContent className="p-6 text-center">
-                    <motion.div 
-                      className="text-4xl mb-4"
-                      animate={{ 
-                        rotate: [0, 5, -5, 0],
-                        scale: [1, 1.1, 1]
-                      }}
-                      transition={{ 
-                        duration: 3, 
-                        repeat: Infinity, 
-                        repeatDelay: 5 
-                      }}
-                    >
-                      {qualification.icon}
-                    </motion.div>
+                    <div className="text-4xl mb-4">{qualification.icon}</div>
                     <h3 className="text-lg font-bold mb-2 text-gray-800 group-hover:text-primary transition-colors">
                       {qualification.title}
                     </h3>
@@ -356,7 +274,7 @@ const About = () => {
       <section className="container mx-auto px-4 py-6">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold mb-8">Technical Skills</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {Object.entries(skills).map(([category, skillList]) => (
               <motion.div
                 key={category}
@@ -368,24 +286,19 @@ const About = () => {
                   <CardHeader>
                     <CardTitle>{category}</CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-4">
-                    {skillList.map((skill) => (
-                      <div 
-                        key={skill.name}
-                        onMouseEnter={() => setHoveredSkill(skill.name)}
-                        onMouseLeave={() => setHoveredSkill(null)}
-                        className="cursor-pointer transition-all duration-200 hover:bg-muted/50 rounded-md p-2 -m-2"
-                      >
-                        <div className="flex justify-between mb-2">
-                          <span className="font-medium">{skill.name}</span>
-                          <span className="text-sm text-muted-foreground">{skill.level}%</span>
-                        </div>
-                        <Progress 
-                          value={hoveredSkill === skill.name ? skill.level : 0} 
-                          className="h-2 transition-all duration-[3000ms]" 
-                        />
-                      </div>
-                    ))}
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2">
+                      {skillList.map((skill) => (
+                        <motion.span
+                          key={skill}
+                          className="px-3 py-1.5 rounded-md text-sm font-medium bg-muted hover:bg-primary hover:text-primary-foreground transition-colors duration-200 cursor-default"
+                          whileHover={{ scale: 1.05 }}
+                          transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                        >
+                          {skill}
+                        </motion.span>
+                      ))}
+                    </div>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -394,35 +307,172 @@ const About = () => {
         </div>
       </section>
 
-        {/* Soft Skills Section */}
-  <section className="container mx-auto px-4 py-6">
+      {/* Soft Skills Section */}
+      <section className="container mx-auto px-4 py-6">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold mb-8">Soft Skills</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {softSkills["Soft Skills"].map((skill, index) => (
+          <Card>
+            <CardContent className="p-6">
+              <div className="flex flex-wrap gap-3">
+                {softSkills.map((skill, index) => (
+                  <motion.span
+                    key={skill}
+                    className="px-4 py-2 rounded-full text-sm font-medium bg-muted hover:bg-primary hover:text-primary-foreground transition-colors duration-200 cursor-default"
+                    whileHover={{ scale: 1.05 }}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: index * 0.08, type: "spring", stiffness: 300 }}
+                  >
+                    {skill}
+                  </motion.span>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* How I AI */}
+      <section className="container mx-auto px-4 py-6">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold mb-2">How I AI</h2>
+          <p className="text-muted-foreground mb-8">
+            LLMs are a process multiplier. I use them to ship faster, think clearer, and help teams do the same.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            {[
+              {
+                icon: Wrench,
+                title: "How I work",
+                color: "text-primary",
+                points: [
+                  "LLM-augmented development is core to how I ship: this site was built with Claude Code",
+                  "Run careful agentic flows for well-scoped tickets end-to-end to PR, with human-in-the-loop review before merge",
+                  "Use LLMs for execution, code review, architectural exploration, mental model building, and cutting through ambiguity, but not as a replacement for judgement",
+                ],
+                delay: 0.1,
+              },
+              {
+                icon: Layers,
+                title: "How I multiply teams",
+                color: "text-secondary",
+                points: [
+                  "Ran a dev academy at Apartment List teaching non-technical staff to build and ship code with cursor",  
+                  "Mentored engineers on practical LLM use: skills, workflows, and best practices",
+                  "Introduced spec-driven development: well-defined specs unlock the full leverage of agentic tools and cut review cycles",
+                ],
+                delay: 0.2,
+              },
+              {
+                icon: Lightbulb,
+                title: "What I believe",
+                color: "text-accent",
+                points: [
+                  "Engineers are not going to be replaced by AI, but engineers who do not use AI are going to be replaced by engineers who do",
+                  "Curiosity and a product mindset are the most important traits for success in the age of AI: try new things, learn new things, and be willing to fail fast",
+                  "Pragmatism beats hype: the question is always \"Does this make the outcome better?\", not \"Are we using AI?\"",
+                ],
+                delay: 0.3,
+              },
+            ].map(({ icon: Icon, title, color, points, delay }) => (
               <motion.div
-                key={skill.name}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                key={title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay }}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
               >
-                <Card 
-                  className="h-full cursor-pointer transition-all duration-200 hover:shadow-md"
-                  onMouseEnter={() => setHoveredSkill(skill.name)}
-                  onMouseLeave={() => setHoveredSkill(null)}
-                >
+                <Card className="h-full border-2 border-primary/10 hover:border-primary/30 transition-all duration-300 bg-gradient-to-br from-white to-purple-50/30">
                   <CardContent className="p-6">
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="font-medium">{skill.name}</span>
-                      <span className="text-sm text-muted-foreground">{skill.level}%</span>
+                    <div className={`mb-4 ${color}`}>
+                      <Icon className="h-7 w-7" />
                     </div>
-                    <Progress 
-                      value={hoveredSkill === skill.name ? skill.level : 0} 
-                      className="h-2 transition-all duration-[3000ms]" 
-                    />
+                    <h3 className="font-bold text-lg mb-4">{title}</h3>
+                    <ul className="space-y-3">
+                      {points.map((p, i) => (
+                        <li key={i} className="text-sm text-muted-foreground leading-relaxed flex items-start gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary/40 mt-1.5 flex-shrink-0" />
+                          {p}
+                        </li>
+                      ))}
+                    </ul>
                   </CardContent>
                 </Card>
               </motion.div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* Side Projects */}
+      <section className="container mx-auto px-4 py-6">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold mb-8">Side Projects</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              {
+                name: "Checklark",
+                url: "https://checklark.com",
+                description: "Agentic workflow that surfaces conferences and events for PR professionals to find relevant speaking opportunities for their clients.",
+                tags: ["Agentic AI", "LLM Workflows", "Public Relations"],
+                color: "text-primary",
+                delay: 0.1,
+              },
+              {
+                name: "Golfaluma",
+                url: "https://golfaluma.com",
+                description: "Real-time group messaging PWA for coordinating casual golf rounds with friends — tee time scheduling, player invites, and round tracking.",
+                tags: ["PWA", "Real-time Messaging", "TypeScript"],
+                color: "text-secondary",
+                delay: 0.2,
+              },
+              {
+                name: "International House Association",
+                url: "https://www.ih-assoc.org/",
+                description: "Marketing website for a non-profit fostering a global community committed to peacebuilding, cultural exchange, and intellectual collaboration.",
+                tags: ["Non-profit", "Marketing", "React"],
+                color: "text-accent",
+                delay: 0.3,
+              },
+              {
+                name: "Pollution Free India",
+                url: "https://www.pollutionfreeindia.org/",
+                description: "Grassroots campaign site demanding action on Delhi air pollution — uses AI to generate a personalised email for visitors to send directly to the Delhi Chief Minister.",
+                tags: ["Climate", "AI", "Civic Tech"],
+                color: "text-warm-accent",
+                delay: 0.4,
+              },
+            ].map(({ name, url, description, tags, color, delay }) => (
+              <motion.a
+                key={name}
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay }}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                className="block"
+              >
+                <Card className="h-full hover:shadow-elegant transition-all duration-300 border-border/50 hover:border-primary/30 group">
+                  <CardContent className="p-6">
+                    <div className="flex items-start justify-between mb-3">
+                      <h3 className={`text-xl font-bold ${color} group-hover:underline underline-offset-2`}>{name}</h3>
+                      <ExternalLink className="h-4 w-4 text-muted-foreground mt-1 flex-shrink-0" />
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-4">{description}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {tags.map((tag) => (
+                        <span key={tag} className="px-2.5 py-1 rounded-md text-xs font-medium bg-muted">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.a>
             ))}
           </div>
         </div>
@@ -432,7 +482,7 @@ const About = () => {
       <section className="container mx-auto px-4 py-6">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold mb-8">Professional Experience</h2>
-          
+
           <div className="space-y-6">
             {jobs.map((job, index) => (
               <motion.div
@@ -442,7 +492,7 @@ const About = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <Card className="overflow-hidden hover:shadow-elegant transition-all duration-300">
-                  <CardHeader 
+                  <CardHeader
                     className="cursor-pointer"
                     onClick={() => setExpandedJob(expandedJob === job.id ? null : job.id)}
                   >
@@ -469,14 +519,14 @@ const About = () => {
                           </Badge>
                         )}
                       </div>
-                      <ChevronDown 
+                      <ChevronDown
                         className={`h-5 w-5 transition-transform ${
                           expandedJob === job.id ? 'rotate-180' : ''
-                        }`} 
+                        }`}
                       />
                     </div>
                   </CardHeader>
-                  
+
                   <AnimatePresence>
                     {expandedJob === job.id && (
                       <motion.div
@@ -543,8 +593,8 @@ const About = () => {
               <h3 className="text-xl font-semibold mb-2">Master of Physics (MPHYS), 2:1</h3>
               <p className="text-muted-foreground mb-4">Oxford University, Christ Church College, UK</p>
               <p className="text-sm leading-relaxed">
-                Required strong critical thinking, analytical and reasoning skills, and the ability to learn 
-                then understand complex concepts. Master's project in Astrophysics, created a C++ model 
+                Required strong critical thinking, analytical and reasoning skills, and the ability to learn
+                then understand complex concepts. Master's project in Astrophysics, created a C++ model
                 of the early universe to understand blazars.
               </p>
             </CardContent>

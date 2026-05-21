@@ -120,7 +120,7 @@ const Contact = () => {
                   <MapPin className="h-5 w-5 text-primary" />
                   <div>
                     <p className="font-medium">Carrier Pigeon</p>
-                    <p className="text-muted-foreground">Petaluma, CA, 94952</p>
+                    <p className="text-muted-foreground">Petaluma, CA, 94954</p>
                   </div>
                 </div>
               </CardContent>

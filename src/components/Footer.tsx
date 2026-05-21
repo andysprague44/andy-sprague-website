@@ -18,7 +18,7 @@ const Footer = () => {
             Ready to Build Something Amazing?
           </h2>
           <p className="text-xl mb-8 text-white/90">
-            I'm looking for opportunities with early-stage startups where I can make a real impact. 
+            I'm looking for opportunities with early-stage startups where I can make a real impact.
             Let's discuss how we can work together.
           </p>
           <Button asChild size="lg" variant="secondary" className="group">
@@ -33,4 +33,4 @@ const Footer = () => {
   );
 };
 
-export default Footer; 
+export default Footer;
