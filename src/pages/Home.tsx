@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Footer from "@/components/Footer";
 
-const roles = ["Full Stack Engineer", "Data Engineer", "Climate Tech", "Problem Solver"];
+const roles = ["Full Stack Engineer", "ML/Data Engineer", "AI-Augmented Engineer", "Product Engineer"];
 
 const TiltCard = ({ children, className }: { children: React.ReactNode; className?: string }) => {
   const ref = useRef<HTMLDivElement>(null);
