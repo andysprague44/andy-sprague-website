@@ -169,7 +169,7 @@ const About = () => {
               {[
                 { label: "Currently", value: "Staff SWE, Apartment List" },
                 { label: "Based In", value: "Petaluma, CA" },
-                { label: "Industries", value: "Climate Tech · Ed Tech · Multi Family" },
+                { label: "Industries", value: "Climate Tech · Ed Tech · Multi Family · Financial Services" },
                 { label: "Fun fact", value: "Can solve a Rubik's cube in under 2 mins" },
               ].map(({ label, value }, i) => (
                 <motion.div
