@@ -7,8 +7,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import emailjs from "@emailjs/browser";
-import { getEmailJSConfig } from "@/config/emailjs";
 import { CONTACT_EMAIL, GITHUB_URL, LINKEDIN_URL } from "@/constants";
 import Footer from "@/components/Footer";
 
@@ -45,29 +43,20 @@ const Contact = () => {
 
     setIsSubmitting(true);
     try {
-      const config = getEmailJSConfig();
-      const result = await emailjs.send(
-        config.serviceId,
-        config.templateId,
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-          to_email: CONTACT_EMAIL,
-          reply_to: formData.email,
-        },
-        config.publicKey,
-      );
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-      if (result.status === 200) {
+      if (res.ok) {
         toast.success("Message sent! I'll get back to you soon.");
         setFormData({ name: "", email: "", subject: "", message: "", website: "" });
       } else {
-        throw new Error("Unexpected status from EmailJS");
+        throw new Error(`Server responded with ${res.status}`);
       }
     } catch (error) {
-      console.error("EmailJS error:", error);
+      console.error("Contact form error:", error);
       toast.error(`Failed to send — email me directly at ${CONTACT_EMAIL}`);
     } finally {
       setIsSubmitting(false);

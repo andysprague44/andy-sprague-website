@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://andysprague.me/sitemap.xml
+Sitemap: https://www.andysprague.me/sitemap.xml
